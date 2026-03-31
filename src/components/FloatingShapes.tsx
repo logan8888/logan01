@@ -14,7 +14,8 @@ const FloatingShapes = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/4 -left-20 w-96 h-96 bg-aura-taupe/30 rounded-full blur-3xl"
+        className="absolute top-1/4 -left-20 w-96 h-96 rounded-full blur-3xl"
+        style={{ background: 'rgba(180,165,145,0.45)' }}
       />
       <motion.div
         animate={{
@@ -27,7 +28,8 @@ const FloatingShapes = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/2 -right-20 w-[30rem] h-[30rem] bg-aura-stone/20 rounded-full blur-3xl"
+        className="absolute top-1/2 -right-20 w-[30rem] h-[30rem] rounded-full blur-3xl"
+        style={{ background: 'rgba(160,148,130,0.38)' }}
       />
       <motion.div
         animate={{
@@ -40,7 +42,8 @@ const FloatingShapes = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-aura-beige/40 rounded-full blur-3xl"
+        className="absolute bottom-1/4 left-1/3 w-64 h-64 rounded-full blur-3xl"
+        style={{ background: 'rgba(200,188,170,0.4)' }}
       />
     </div>
   );

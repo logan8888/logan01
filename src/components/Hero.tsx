@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import RisingPetals from './RisingPetals';
+import FloatingShapes from './FloatingShapes';
 
 const Hero = () => {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center pt-20 pb-4 overflow-hidden bg-aura-cream">
+      <FloatingShapes />
       <RisingPetals />
       {/* Background Subtle Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-aura-beige/20 via-transparent to-aura-cream z-[1]" />
