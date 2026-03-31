@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import FloatingShapes from './FloatingShapes';
+import RisingPetals from './RisingPetals';
 
 const Consultation = () => {
   return (
