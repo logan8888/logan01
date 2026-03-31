@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 
 const petals = [
-  { startY: "100%", startX: "8%",  endX: "14%",  dur: 40, delay: 0,  size: 600, rot: 0   },
-  { startY: "70%",  startX: "72%", endX: "66%",  dur: 50, delay: 0,  size: 700, rot: 60  },
-  { startY: "100%", startX: "38%", endX: "44%",  dur: 45, delay: 6,  size: 550, rot: 120 },
-  { startY: "50%",  startX: "88%", endX: "82%",  dur: 55, delay: 0,  size: 650, rot: 180 },
-  { startY: "100%", startX: "22%", endX: "28%",  dur: 48, delay: 14, size: 580, rot: 240 },
-  { startY: "80%",  startX: "55%", endX: "50%",  dur: 52, delay: 0,  size: 620, rot: 300 },
+  { startY: "90%",  startX: "5%",  endX: "12%",  dur: 45, delay: 0,  size: 500, rot: 0,   color: 'rgba(210,185,165,0.7)'  },
+  { startY: "60%",  startX: "70%", endX: "63%",  dur: 52, delay: 0,  size: 600, rot: 60,  color: 'rgba(195,170,148,0.65)' },
+  { startY: "95%",  startX: "35%", endX: "42%",  dur: 48, delay: 8,  size: 520, rot: 120, color: 'rgba(220,195,175,0.72)' },
+  { startY: "45%",  startX: "85%", endX: "79%",  dur: 55, delay: 0,  size: 580, rot: 180, color: 'rgba(200,175,152,0.68)' },
+  { startY: "90%",  startX: "20%", endX: "27%",  dur: 50, delay: 15, size: 490, rot: 240, color: 'rgba(215,190,168,0.7)'  },
+  { startY: "75%",  startX: "52%", endX: "46%",  dur: 42, delay: 0,  size: 540, rot: 300, color: 'rgba(205,180,158,0.66)' },
 ];
 
 const RisingPetals = () => {
@@ -17,29 +17,29 @@ const RisingPetals = () => {
           key={i}
           initial={{ y: p.startY, x: p.startX, rotate: p.rot, opacity: 0 }}
           animate={{
-            y: [p.startY, "40%", "0%", "-25%"],
-            x: [p.startX, `calc(${p.startX} + ${i % 2 === 0 ? '+' : '-'}3%)`, p.endX, `calc(${p.endX} + ${i % 2 === 0 ? '-' : '+'}2%)`],
-            rotate: [p.rot, p.rot + 25, p.rot + 10, p.rot + 35],
-            opacity: [0, 0.55, 0.55, 0.55, 0],
+            y: [p.startY, "30%", "-20%"],
+            x: [
+              p.startX,
+              `calc(${p.startX} + ${i % 2 === 0 ? '4' : '-4'}%)`,
+              p.endX,
+            ],
+            rotate: [p.rot, p.rot + 20, p.rot + 40],
+            opacity: [0, 1, 1, 0],
           }}
           transition={{
             duration: p.dur,
             repeat: Infinity,
             delay: p.delay,
             ease: "easeInOut",
-            times: [0, 0.3, 0.7, 1],
+            times: [0, 0.2, 0.85, 1],
           }}
           style={{
             position: 'absolute',
             width: p.size,
             height: p.size,
             borderRadius: '45% 55% 60% 40% / 50% 40% 60% 50%',
-            filter: 'blur(60px)',
-            background: i % 3 === 0
-              ? 'rgba(195,178,155,0.5)'
-              : i % 3 === 1
-              ? 'rgba(175,160,138,0.45)'
-              : 'rgba(210,195,172,0.48)',
+            filter: 'blur(25px)',
+            background: p.color,
           }}
         />
       ))}
