@@ -1,42 +1,46 @@
 import { motion } from 'framer-motion';
 
-const petalsConfig = [
-  { startY: "110%", delay: 0,  x1: "10%",  x2: "15%",  dur: 22 },
-  { startY: "60%",  delay: 0,  x1: "70%",  x2: "65%",  dur: 25 },
-  { startY: "80%",  delay: 0,  x1: "40%",  x2: "45%",  dur: 20 },
-  { startY: "30%",  delay: 0,  x1: "85%",  x2: "80%",  dur: 28 },
-  { startY: "110%", delay: 5,  x1: "55%",  x2: "60%",  dur: 24 },
-  { startY: "110%", delay: 10, x1: "25%",  x2: "20%",  dur: 21 },
-  { startY: "50%",  delay: 0,  x1: "5%",   x2: "10%",  dur: 30 },
-  { startY: "110%", delay: 8,  x1: "90%",  x2: "85%",  dur: 23 },
+const petals = [
+  { startY: "100%", startX: "8%",  endX: "14%",  dur: 40, delay: 0,  size: 600, rot: 0   },
+  { startY: "70%",  startX: "72%", endX: "66%",  dur: 50, delay: 0,  size: 700, rot: 60  },
+  { startY: "100%", startX: "38%", endX: "44%",  dur: 45, delay: 6,  size: 550, rot: 120 },
+  { startY: "50%",  startX: "88%", endX: "82%",  dur: 55, delay: 0,  size: 650, rot: 180 },
+  { startY: "100%", startX: "22%", endX: "28%",  dur: 48, delay: 14, size: 580, rot: 240 },
+  { startY: "80%",  startX: "55%", endX: "50%",  dur: 52, delay: 0,  size: 620, rot: 300 },
 ];
 
 const RisingPetals = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {petalsConfig.map((p, i) => (
+      {petals.map((p, i) => (
         <motion.div
           key={i}
-          initial={{
-            y: p.startY,
-            x: p.x1,
-            rotate: i * 45,
-            opacity: 0,
-          }}
+          initial={{ y: p.startY, x: p.startX, rotate: p.rot, opacity: 0 }}
           animate={{
-            y: "-20%",
-            x: p.x2,
-            rotate: i * 45 + 180,
-            opacity: [0, 0.45, 0.45, 0],
+            y: [p.startY, "40%", "0%", "-25%"],
+            x: [p.startX, `calc(${p.startX} + ${i % 2 === 0 ? '+' : '-'}3%)`, p.endX, `calc(${p.endX} + ${i % 2 === 0 ? '-' : '+'}2%)`],
+            rotate: [p.rot, p.rot + 25, p.rot + 10, p.rot + 35],
+            opacity: [0, 0.55, 0.55, 0.55, 0],
           }}
           transition={{
             duration: p.dur,
             repeat: Infinity,
             delay: p.delay,
-            ease: "linear",
+            ease: "easeInOut",
+            times: [0, 0.3, 0.7, 1],
           }}
-          className="absolute w-48 h-48 md:w-[28rem] md:h-[28rem] rounded-[45%_55%_65%_35%/45%_45%_55%_55%] blur-3xl"
-          style={{ background: i % 2 === 0 ? 'rgba(180,168,152,0.35)' : 'rgba(160,148,132,0.3)' }}
+          style={{
+            position: 'absolute',
+            width: p.size,
+            height: p.size,
+            borderRadius: '45% 55% 60% 40% / 50% 40% 60% 50%',
+            filter: 'blur(60px)',
+            background: i % 3 === 0
+              ? 'rgba(195,178,155,0.5)'
+              : i % 3 === 1
+              ? 'rgba(175,160,138,0.45)'
+              : 'rgba(210,195,172,0.48)',
+          }}
         />
       ))}
     </div>
