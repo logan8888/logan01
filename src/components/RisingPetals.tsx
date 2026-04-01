@@ -1,13 +1,20 @@
 import { motion } from 'framer-motion';
 
-const petals = [
-  { startY: "90%",  startX: "5%",  endX: "12%",  dur: 45, delay: 0,  size: 500, rot: 0,   color: 'rgba(225,185,185,0.7)'  },
-  { startY: "60%",  startX: "70%", endX: "63%",  dur: 52, delay: 0,  size: 600, rot: 60,  color: 'rgba(215,175,178,0.65)' },
-  { startY: "95%",  startX: "35%", endX: "42%",  dur: 48, delay: 8,  size: 520, rot: 120, color: 'rgba(230,190,190,0.72)' },
-  { startY: "45%",  startX: "85%", endX: "79%",  dur: 55, delay: 0,  size: 580, rot: 180, color: 'rgba(220,178,180,0.68)' },
-  { startY: "90%",  startX: "20%", endX: "27%",  dur: 50, delay: 15, size: 490, rot: 240, color: 'rgba(228,185,188,0.7)'  },
-  { startY: "75%",  startX: "52%", endX: "46%",  dur: 42, delay: 0,  size: 540, rot: 300, color: 'rgba(218,180,182,0.66)' },
-];
+const petalCount = 24;
+
+const petals = Array.from({ length: petalCount }, (_, i) => ({
+  x: `${(i * 4.1) % 100}%`,
+  size: 18 + (i % 5) * 8,
+  dur: 8 + (i % 7) * 1.5,
+  delay: (i * 0.6) % 10,
+  rotate: i * 37,
+  drift: (i % 2 === 0 ? 1 : -1) * (1.5 + (i % 4)),
+  color: i % 3 === 0
+    ? 'rgba(210,175,175,0.75)'
+    : i % 3 === 1
+    ? 'rgba(225,190,190,0.7)'
+    : 'rgba(195,165,165,0.72)',
+}));
 
 const RisingPetals = () => {
   return (
@@ -15,30 +22,31 @@ const RisingPetals = () => {
       {petals.map((p, i) => (
         <motion.div
           key={i}
-          initial={{ y: p.startY, x: p.startX, rotate: p.rot, opacity: 0 }}
+          initial={{
+            y: '110%',
+            x: p.x,
+            rotate: p.rotate,
+            opacity: 0,
+          }}
           animate={{
-            y: [p.startY, "30%", "-20%"],
-            x: [
-              p.startX,
-              `calc(${p.startX} + ${i % 2 === 0 ? '4' : '-4'}%)`,
-              p.endX,
-            ],
-            rotate: [p.rot, p.rot + 20, p.rot + 40],
-            opacity: [0, 1, 1, 0],
+            y: '-10%',
+            x: `calc(${p.x} + ${p.drift}%)`,
+            rotate: p.rotate + 180,
+            opacity: [0, 0.9, 0.9, 0],
           }}
           transition={{
             duration: p.dur,
             repeat: Infinity,
             delay: p.delay,
-            ease: "easeInOut",
-            times: [0, 0.2, 0.85, 1],
+            ease: 'easeInOut',
+            times: [0, 0.15, 0.85, 1],
           }}
           style={{
             position: 'absolute',
             width: p.size,
-            height: p.size,
-            borderRadius: '45% 55% 60% 40% / 50% 40% 60% 50%',
-            filter: 'blur(25px)',
+            height: p.size * 1.4,
+            borderRadius: '50% 40% 60% 30% / 60% 50% 50% 40%',
+            filter: 'blur(2px)',
             background: p.color,
           }}
         />
