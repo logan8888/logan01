@@ -3,19 +3,19 @@ import { motion } from 'framer-motion';
 const petalCount = 28;
 
 const petals = Array.from({ length: petalCount }, (_, i) => {
-  const dur = 10 + (i % 6) * 1.8;
+  const dur = 18 + (i % 6) * 3;
   return {
     left: `${(i / petalCount) * 100}%`,
-    size: 14 + (i % 6) * 7,
+    size: 12 + (i % 6) * 6,
     dur,
     delay: -((i / petalCount) * dur),
     rotate: i * 41,
     driftX: (i % 2 === 0 ? 1 : -1) * (8 + (i % 4) * 4),
     color: i % 3 === 0
-      ? 'rgba(188,120,120,0.88)'
+      ? 'rgba(188,120,120,0.45)'
       : i % 3 === 1
-      ? 'rgba(205,138,138,0.84)'
-      : 'rgba(170,108,108,0.86)',
+      ? 'rgba(205,138,138,0.4)'
+      : 'rgba(170,108,108,0.42)',
   };
 });
 
@@ -38,7 +38,7 @@ const RisingPetals = () => {
             y: -120,
             x: [0, p.driftX, -p.driftX * 0.5, p.driftX * 0.3],
             rotate: p.rotate + 160,
-            opacity: [0, 1, 1, 0],
+            opacity: [0, 0.6, 0.6, 0],
           }}
           transition={{
             duration: p.dur,

@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import RisingPetals from './RisingPetals';
 
 const FeaturePanel = () => {
   return (
     <section className="relative overflow-hidden bg-aura-cream py-10 md:py-16 border-b border-aura-stone/10">
-      <RisingPetals />
       
       <div className="container-custom relative z-10 grid md:grid-cols-2 gap-10 items-center">
         <motion.div

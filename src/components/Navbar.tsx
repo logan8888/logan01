@@ -10,12 +10,9 @@ const navItems = [
 
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState('');
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
       const sections = ['treatments', 'team', 'location', 'reviews'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
@@ -36,7 +33,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'bg-aura-cream/95 backdrop-blur-md py-3 border-b border-aura-stone/20 shadow-sm' : 'bg-transparent py-6'}`}>
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-aura-cream border-b border-aura-stone/20 py-4">
       <div className="container-custom flex justify-between items-center">
         <a href="#" className="text-xl font-serif tracking-widest uppercase text-aura-charcoal">
           Aura
