@@ -15,10 +15,10 @@ const petals = Array.from({ length: petalCount }, (_, i) => {
     rotate: i * 41,
     drift: (i % 2 === 0 ? 1 : -1) * (1 + (i % 3)),
     color: i % 3 === 0
-      ? 'rgba(215,178,178,0.78)'
+      ? 'rgba(188,128,128,0.88)'
       : i % 3 === 1
-      ? 'rgba(228,192,192,0.72)'
-      : 'rgba(200,162,162,0.75)',
+      ? 'rgba(205,145,145,0.82)'
+      : 'rgba(172,115,115,0.85)',
   };
 });
 
@@ -53,7 +53,7 @@ const RisingPetals = () => {
             width: p.size,
             height: p.size * 1.5,
             borderRadius: '50% 40% 60% 30% / 60% 50% 50% 40%',
-            filter: 'blur(1.5px)',
+            filter: 'none',
             background: p.color,
           }}
         />
